@@ -1,0 +1,19 @@
+# Ignore secrets
+firebase_key.json
+
+# Ignore virtual environment
+.venv/
+
+# Ignore pycache
+__pycache__/
+*.pyc
+
+# Ignore dataset
+dataset/
+
+# Ignore uploaded user images
+static/uploads/*
+!static/uploads/.keep
+
+# Ignore temporary generated files
+*.log

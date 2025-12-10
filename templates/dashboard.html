@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hygiene Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .chart-container { width: 400px; margin: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100px; border-radius: 8px; }
+        .btn-back { margin-bottom: 20px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h2>📊 Food Hygiene Dashboard</h2>
+    <a href="{{ url_for('index') }}" class="btn-back">⬅️ Back to Home</a>
+
+    <!-- Pie Chart -->
+    <div class="chart-container">
+        <canvas id="hygieneChart"></canvas>
+    </div>
+
+    <!-- Reports Table -->
+    <h3>📝 Hygiene Reports</h3>
+    <table>
+        <tr>
+            <th>Shop Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Class</th>
+            <th>Score (%)</th>
+            <th>Surroundings</th>
+            <th>Utensils</th>
+            <th>Covered Food</th>
+            <th>Others Hygiene</th>
+            <th>Image</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for report in reports %}
+        <tr>
+            <td>{{ report.shop_name }}</td>
+            <td>{{ report.shop_address }}</td>
+            <td>{{ report.city }}</td>
+            <td>{{ report.hygiene_class }}</td>
+            <td>{{ report.score|round(2) }}</td>
+            <td>{{ report.surroundings }}</td>
+            <td>{{ report.utensils }}</td>
+            <td>{{ report.covered_food }}</td>
+            <td>{{ report.others_hygiene }}</td>
+            <td>
+                {% if report.uploaded_image %}
+                    <img src="{{ report.uploaded_image }}" alt="Uploaded Image">
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>{{ report.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        const ctx = document.getElementById('hygieneChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Good', 'Moderate', 'Poor'],
+                datasets: [{
+                    data: [{{ good_count }}, {{ moderate_count }}, {{ poor_count }}],
+                    backgroundColor: ['green', 'orange', 'red']
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

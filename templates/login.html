@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - AI Food Hygiene Checker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80") no-repeat center center fixed;
+      background-size: cover;
+    }
+    .navbar {
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .navbar a {
+      color: white !important;
+      margin-right: 15px;
+    }
+    .hero {
+      text-align: center;
+      color: white;
+      padding: 120px 20px;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .card {
+      border-radius: 15px;
+      max-width: 400px;
+      margin: 40px auto;
+    }
+    section {
+      padding: 80px 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      margin: 40px auto;
+      max-width: 900px;
+    }
+    .btn-custom {
+      border-radius: 25px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#">AI Food Hygiene</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="#how">How it Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#login-card">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <h1 class="display-4 fw-bold">AI Food Hygiene Checker</h1>
+  <p class="lead">Ensure your food hygiene with AI-powered analysis.</p>
+</div>
+
+<!-- Features -->
+<section id="features">
+  <h2 class="text-center text-primary mb-4">✨ Features</h2>
+  <p class="text-center">Upload images of food stalls and get instant hygiene predictions with AI.</p>
+</section>
+
+<!-- How it Works -->
+<section id="how">
+  <h2 class="text-center text-success mb-4">⚙️ How it Works</h2>
+  <p class="text-center">Our AI model analyzes cleanliness, utensils, and surroundings to provide a hygiene score.</p>
+</section>
+
+<!-- About -->
+<section id="about">
+  <h2 class="text-center text-info mb-4">ℹ️ About</h2>
+  <p class="text-center">This system helps both customers and authorities ensure food safety in real-time.</p>
+</section>
+
+<!-- Login Card -->
+<div id="login-card" class="container">
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="alert alert-warning mt-2 text-center">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="card shadow-lg p-4 bg-light">
+    <h2 class="text-center text-primary mb-3">🔑 Login</h2>
+    <form method="POST">
+      <div class="mb-3">
+        <label class="form-label fw-bold">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-bold">Password</label>
+        <div class="input-group">
+          <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" required>
+          <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">👁</button>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success btn-custom">Login</button>
+      </div>
+    </form>
+    <p class="text-center mt-3">
+      Don’t have an account? <a href="{{ url_for('register') }}" class="text-decoration-none">Register here</a>
+    </p>
+  </div>
+</div>
+
+<script>
+  function togglePassword() {
+    let pwd = document.getElementById("password");
+    pwd.type = pwd.type === "password" ? "text" : "password";
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
